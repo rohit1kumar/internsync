@@ -56,7 +56,7 @@ class GoogleSheet:
 
             worksheet.update("A1", list_data)
             worksheet.format("A1:E1", self.ws_format)
-            print("Data written to Google Sheet.")
+            print("=== Data written to Google Sheet ===")
         except Exception as e:
             print(f"Error while writing to Google Sheet: {str(e)}")
 
@@ -70,6 +70,7 @@ class CSVFile:
 
     def write(self, data):
         self.csv_writer.writerow(data)
+        print("=== Data written to CSV file ===")
 
     def close(self):
         self.csv_file.close()

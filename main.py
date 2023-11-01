@@ -77,11 +77,11 @@ def scrape_internships():
                     current_page += 1
                 else:
                     break
+            print("=== Scraping completed ===")
             return scraped_data
         except Exception as e:
-            print(e)
+            print("Error while scraping: ", str(e))
         finally:
-            print("Done")
             browser.close()
 
 
@@ -95,7 +95,7 @@ if __name__ == "__main__":
     )  # If this flag is passed, write data to Google Sheet
     args = parser.parse_args()
     run_headless = not args.headful
-
+    print(f"=== Running in {'headless' if run_headless else 'headful'} mode ===")
     scraped_json = scrape_internships()
 
     if args.gs:
