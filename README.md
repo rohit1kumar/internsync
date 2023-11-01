@@ -12,7 +12,7 @@ Make sure you have the following dependencies installed:
 
 *you can install them using the following commands too:* 
 ```bash
-pip install playwright && playwright install
+pip install playwright && playwright install chromium
 ```
 
 ## Usage
