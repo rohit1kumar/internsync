@@ -102,6 +102,6 @@ if __name__ == "__main__":
         "--headful", action="store_true", help="Run in non-headless mode."
     )  # If this flag is passed, run in non-headless mode or headful mode (i.e. show browser)
     args = parser.parse_args()
-    headless = not args.headful
+    run_headless = not args.headful
 
     scrape_internships()
