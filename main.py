@@ -1,4 +1,4 @@
-import argparse
+import argparse, os
 from playwright.sync_api import sync_playwright
 from dotenv import load_dotenv
 from sheet import GoogleSheet, CSVFile
