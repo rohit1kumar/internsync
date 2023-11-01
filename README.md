@@ -4,6 +4,11 @@ A Playwright based web scraper to scrape internships from [Internshala](https://
 ## Disclaimer
 *This is for educational purpose only. I am not responsible for any misuse of this code.*
 
+## Features
+- Store data in a CSV file
+- Store data in a Google Sheet (optional)
+- Keeps the Google Sheet data synced using GitHub Actions (optional)
+
 ## Prerequisites
 Make sure you have the following dependencies installed:
 
