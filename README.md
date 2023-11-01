@@ -20,12 +20,24 @@ pip install playwright && playwright install
 2. Install the dependencies using `pip install -r requirements.txt`
 3. Run the script using `python main.py`
 
+Optional steps (for Google Sheets mode only):
+1. Create a new Google Sheet
+2. Create a new project in [Google Cloud Platform](https://console.cloud.google.com/)
+3. Follow this guide for setting up the [Google Sheets API](https://docs.gspread.org/en/v5.12.0/oauth2.html#for-bots-using-service-account)
+4. Rename the json file to `credentials.json` and place it in the root directory.
+5. Get the Google Sheet ID from the URL e.g `https://docs.google.com/spreadsheets/d/GOOGLE_SHEET_ID/edit`
+6. Add to `GOOGLE_SHEET_ID` to the `.env` file
+
+
 ## Options
 - `--headful`: Run the script in non-headless mode (show the browser)
     ```bash
     python main.py --headful
     ```
-
+- `--gs`: Run the script in Google Sheets mode (store data in Google Sheets)
+    ```bash
+    python main.py --gs
+    ```
 [//]: # (- `--limit`: Limit the number of internships to scrape &#40;default: 10&#41;)
 
 [//]: # (- `--output`: Output file name &#40;default: internships.csv&#41; )
