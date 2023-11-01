@@ -1,0 +1,39 @@
+on:
+  workflow_dispatch: # This workflow can be manually triggered using the GitHub Actions tab
+  schedule: # This workflow will run on a cron schedule
+  - cron: '0 */12 * * *' # This workflow will run every 12 hours
+
+jobs:
+  build:
+    runs-on: ubuntu-latest # This workflow will run on the ubuntu-latest machine
+    steps:
+      - name: Checkout code # This step checks out a copy of your repository on the ubuntu-latest machine
+        uses: actions/checkout@v4
+
+      - name: Set up Python # This step sets up Python on the ubuntu-latest machine
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          cache: 'pip' # This caches the pip dependencies to speed up the workflow
+
+      - name: Install dependencies # This step installs all dependencies
+        run: pip install -r requirements.txt
+
+      - name: Install Browser # This step installs the browser
+        run: playwright install chromium
+
+      - name: Run script # This step runs the script
+        env: # This step uses the secrets stored in the GitHub repository's settings
+          GOOGLE_SPREADSHEET_ID: ${{ secrets.GOOGLE_SPREADSHEET_ID }}
+          TYPE: ${{ secrets.TYPE }}
+          PROJECT_ID: ${{ secrets.PROJECT_ID }}
+          PROJECT_KEY_ID: ${{ secrets.PROJECT_KEY_ID }}
+          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+          CLIENT_EMAIL: ${{ secrets.CLIENT_EMAIL }}
+          CLIENT_ID: ${{ secrets.CLIENT_ID }}
+          AUTH_URI: ${{ secrets.AUTH_URI }}
+          TOKEN_URI: ${{ secrets.TOKEN_URI }}
+          AUTH_PROVIDER_X509_CERT_URL: ${{ secrets.AUTH_PROVIDER_X509_CERT_URL }}
+          CLIENT_X509_CERT_URL: ${{ secrets.CLIENT_X509_CERT_URL }}
+          UNIVERSE_DOMAIN: ${{ secrets.UNIVERSE_DOMAIN }}
+        run: python main.py --gs
