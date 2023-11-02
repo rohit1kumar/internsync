@@ -22,20 +22,19 @@ jobs:
       - name: Install Browser # This step installs the browser
         run: playwright install chromium
 
-      - name: Get env # This step runs the script
-        run: |
-          echo "GOOGLE_SPREADSHEET_ID=$GOOGLE_SPREADSHEET_ID" >> .env
-          echo "TYPE=$TYPE" >> .env
-          echo "PROJECT_ID=$PROJECT_ID" >> .env
-          echo "PROJECT_KEY_ID=$PROJECT_KEY_ID" >> .env
-          echo "PRIVATE_KEY=$PRIVATE_KEY" >> .env
-          echo "CLIENT_EMAIL=$CLIENT_EMAIL" >> .env
-          echo "CLIENT_ID=$CLIENT_ID" >> .env
-          echo "AUTH_URI=$AUTH_URI" >> .env
-          echo "TOKEN_URI=$TOKEN_URI" >> .env
-          echo "AUTH_PROVIDER_X509_CERT_URL=$AUTH_PROVIDER_X509_CERT_URL" >> .env
-          echo "CLIENT_X509_CERT_URL=$CLIENT_X509_CERT_URL" >> .env
-          echo "UNIVERSE_DOMAIN=$UNIVERSE_DOMAIN" >> .env
-          
       - name: Run script # This step runs the script
+        env: # This step uses the secrets stored in the GitHub repository's settings
+            GOOGLE_SPREADSHEET_ID: ${{ secrets.GOOGLE_SPREADSHEET_ID }}
+            TYPE: ${{ secrets.TYPE }}
+            PROJECT_ID: ${{ secrets.PROJECT_ID }}
+            PROJECT_KEY_ID: ${{ secrets.PROJECT_KEY_ID }}
+            PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+            CLIENT_EMAIL: ${{ secrets.CLIENT_EMAIL }}
+            CLIENT_ID: ${{ secrets.CLIENT_ID }}
+            AUTH_URI: ${{ secrets.AUTH_URI }}
+            TOKEN_URI: ${{ secrets.TOKEN_URI }}
+            AUTH_PROVIDER_X509_CERT_URL: ${{ secrets.AUTH_PROVIDER_X509_CERT_URL }}
+            CLIENT_X509_CERT_URL: ${{ secrets.CLIENT_X509_CERT_URL }}
+            UNIVERSE_DOMAIN: ${{ secrets.UNIVERSE_DOMAIN }}
+            GOOGLE_SHEET_NAME: ${{ secrets.GOOGLE_SHEET_NAME }}
         run: python main.py --gs

@@ -2,3 +2,4 @@ venv/
 .idea/
 .env
 credentials.json
+__pycache__/
