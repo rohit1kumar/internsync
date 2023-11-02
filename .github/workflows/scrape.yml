@@ -37,3 +37,8 @@ jobs:
           CLIENT_X509_CERT_URL: ${{ secrets.CLIENT_X509_CERT_URL }}
           UNIVERSE_DOMAIN: ${{ secrets.UNIVERSE_DOMAIN }}
         run: python main.py --gs
+        
+      - name: Debug Secrets
+        run: |
+          echo "GOOGLE_SPREADSHEET_ID: $GOOGLE_SPREADSHEET_ID"
+          echo "TYPE: $TYPE"
