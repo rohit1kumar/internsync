@@ -68,7 +68,7 @@ class GoogleSheet:
                 list_data.append([data[header] for header in self.headers])
 
             worksheet.update("A1", list_data)
-            worksheet.format("A1:E1", self.ws_format)
+            worksheet.format("A1:F1", self.ws_format)
             print("=== Data written to Google Sheet ===")
         except Exception as e:
             print(f"Error while writing to Google Sheet: {str(e)}")

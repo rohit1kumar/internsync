@@ -1,4 +1,5 @@
 import argparse, os
+from datetime import datetime
 from playwright.sync_api import sync_playwright
 from dotenv import load_dotenv
 from sheet import GoogleSheet, CSVFile
@@ -6,7 +7,7 @@ from sheet import GoogleSheet, CSVFile
 load_dotenv()
 
 run_headless = True  # Default mode as headless
-headers = ["title", "company", "stipend", "location", "link"]
+headers = ["title", "company", "stipend", "location", "link", "scraped_at"]
 
 
 def scrape_internships():
@@ -55,6 +56,7 @@ def scrape_internships():
                         if link_element
                         else "N/A"
                     )
+                    scraped_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
                     scraped_data.append(
                         {
@@ -63,6 +65,7 @@ def scrape_internships():
                             "stipend": stipend,
                             "location": location,
                             "link": link,
+                            "scraped_at": scraped_at,
                         }
                     )
 
