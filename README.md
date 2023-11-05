@@ -33,6 +33,10 @@ Optional steps (for Google Sheets mode only):
 5. Get the Google Sheet ID from the URL e.g `https://docs.google.com/spreadsheets/d/GOOGLE_SHEET_ID/edit`
 6. Add to `GOOGLE_SHEET_ID` to the `.env` file
 
+Optional steps (for syncing Google Sheets using GitHub Actions):
+1. GitHub Actions are already setup in the repository
+2. Download GitHub CLI or add secrets manually to the repository from `.env` file
+3. With GitHub CLI run `gh secret set -R <your-username/your-repo> -f .env`
 
 ## Options
 - `--headful`: Run the script in non-headless mode (show the browser)
