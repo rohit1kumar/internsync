@@ -26,8 +26,10 @@ jobs:
             ${{ runner.os }}-pip-
 
       - name: Install dependencies
-        if: steps.cache-python-deps.outputs.cache-hit != 'true'
-        run: pip install -r requirements.txt
+        run: |
+          if [ "${{ steps.cache-python-deps.outputs.cache-hit }}" != 'true' ]; then
+            pip install -r requirements.txt
+          fi
 
       - name: Install Browser
         run: playwright install chromium
