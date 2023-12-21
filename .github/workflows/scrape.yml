@@ -17,6 +17,7 @@ jobs:
           cache: 'pip' # Caches the pip dependencies to speed up the workflow
 
       - name: Cache Python dependencies
+        id: cache-python-deps
         uses: actions/cache@v3
         with:
           path: ~/.cache/pip
@@ -25,6 +26,7 @@ jobs:
             ${{ runner.os }}-pip-
 
       - name: Install dependencies
+        if: steps.cache-python-deps.outputs.cache-hit != 'true'
         run: pip install -r requirements.txt
 
       - name: Install Browser
