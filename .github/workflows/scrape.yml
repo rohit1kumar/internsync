@@ -1,28 +1,28 @@
 on:
-  workflow_dispatch: # This workflow can be manually triggered using the GitHub Actions tab
-  schedule: # This workflow will run on a cron schedule
-  - cron: '0 */12 * * *' # This workflow will run every 12 hours
+  workflow_dispatch: # Workflow can be manually triggered
+  schedule: # Workflow will run on a cron schedule
+  - cron: '0 */12 * * *' # Run every 12 hours
 
 jobs:
   build:
-    runs-on: ubuntu-latest # This workflow will run on the ubuntu-latest machine
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout code # This step checks out a copy of your repository on the ubuntu-latest machine
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Python # This step sets up Python on the ubuntu-latest machine
+      - name: Set up Python
         uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
-          cache: 'pip' # This caches the pip dependencies to speed up the workflow
+#        with:
+#          python-version: '3.10'
+#          cache: 'pip' # Caches the pip dependencies to speed up the workflow
 
-      - name: Install dependencies # This step installs all dependencies
+      - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Install Browser # This step installs the browser
+      - name: Install Browser
         run: playwright install chromium
 
-      - name: Run script # This step runs the script
+      - name: Run script
         env: # This step uses the secrets stored in the GitHub repository's settings
             GOOGLE_SPREADSHEET_ID: ${{ secrets.GOOGLE_SPREADSHEET_ID }}
             TYPE: ${{ secrets.TYPE }}
