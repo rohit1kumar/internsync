@@ -1,8 +1,8 @@
-# Internshala-Scraper-Py
+# InternSync
 A Playwright based web scraper to scrape internships from [Internshala](https://internshala.com/), written in Python. Data is stored in a CSV file.
 
 ## Disclaimer
-*This is for educational purpose only. I am not responsible for any misuse of this code.*
+*This is for educational purposes only. I am not responsible for any misuse of this code.*
 
 ## Features
 - Store data in a CSV file
